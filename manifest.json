@@ -1,0 +1,17 @@
+{
+  "name": "英语音标教室",
+  "short_name": "音标教室",
+  "description": "点一点就能听的英语音标教学页：48 个国际音标、示范单词、发音要点与记忆小窍门。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f5f0e1",
+  "theme_color": "#f5f0e1",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
