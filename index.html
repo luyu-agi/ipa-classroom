@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>英语音标教室 · 48 个国际音标轻松学</title>
+  <meta name="description" content="点一点就能听的英语音标教学页：48 个国际音标、示范单词、发音要点与记忆小窍门。" />
+
+  <!-- PWA / iOS 主屏幕 App -->
+  <meta name="theme-color" content="#f5f0e1" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="音标教室" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&family=Literata:opsz,wght@7..72,400;7..72,700;7..72,800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- 导航 -->
+  <nav class="nav">
+    <a class="logo" href="#top">音标教室 <span class="ipa">/ˈfɒn.et.ɪks/</span></a>
+    <div class="nav-links">
+      <a href="#chart">舌位图</a>
+      <a href="#mono">单元音</a>
+      <a href="#di">双元音</a>
+      <a href="#cons">辅音</a>
+      <a href="#pairs">辨音练习</a>
+      <a href="#quiz">小测验</a>
+      <a href="#howto">学习方法</a>
+      <button class="font-toggle" id="fontToggle" aria-label="切换大字号模式" title="投屏教学：一键放大字号">A+</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" id="top">
+    <span class="hero-glyph" style="font-size: 22rem; top: -6rem; right: -3rem;">æ</span>
+    <span class="hero-glyph" style="font-size: 13rem; bottom: -4rem; left: 8%;">θ</span>
+    <span class="hero-glyph" style="font-size: 9rem; top: 20%; left: 42%;">ʃ</span>
+    <span class="hero-glyph" style="font-size: 7rem; bottom: 8%; right: 24%;">ŋ</span>
+
+    <h1>开口之前，<br />先认识这 <em>48</em> 个声音。</h1>
+    <p class="sub">
+      每个音标都可以<span class="ipa"> /点一点听一听/ </span>。这里有全部 48 个英语国际音标：
+      每个音配 2–3 个示范单词、一段发音要领和一个小记忆法，适合课堂教学，也适合自己跟着练。
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">20</div><div class="lbl">元音 VOWELS</div></div>
+      <div class="hero-stat"><div class="num">28</div><div class="lbl">辅音 CONSONANTS</div></div>
+      <div class="hero-stat"><div class="num">100+</div><div class="lbl">示范单词 WORDS</div></div>
+    </div>
+    <div class="cta-row">
+      <a class="btn-pill" href="#chart">从舌位图开始 →</a>
+      <a class="btn-pill ghost" href="#quiz">先来个小测验</a>
+    </div>
+  </header>
+
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" style="background: var(--beige);">
+    <path d="M0,28 C240,56 480,0 720,20 C960,40 1200,8 1440,32 L1440,56 L0,56 Z" fill="#f5f0e1"></path>
+  </svg>
+
+  <!-- 01 元音舌位图 -->
+  <section class="section cream-bg" id="chart">
+    <div class="sec-head reveal">
+      <span class="sec-no">01</span>
+      <h2>元音舌位图</h2>
+      <div class="en">The Vowel Chart</div>
+      <p class="desc">
+        元音的区别就在“舌头放在哪”。这张图就是口腔的侧视图：左边是口腔前部（嘴唇），右边是后部；
+        越往上舌头抬得越高。<b>点任意圆点</b>，就能看到这个音的示范单词和发音要领。
+      </p>
+    </div>
+    <div class="wrap chart-flex">
+      <div class="reveal">
+        <svg class="vowel-chart" id="vowelChart" viewBox="0 0 400 300" role="img" aria-label="元音舌位图">
+          <!-- 梯形口腔图 -->
+          <polygon points="52,38 346,52 306,262 42,246" fill="rgba(253,250,242,0.85)" stroke="#264653" stroke-width="2" />
+          <!-- 网格虚线 -->
+          <line x1="52" y1="38" x2="346" y2="52" stroke="none" />
+          <line x1="49" y1="107" x2="333" y2="122" stroke="rgba(38,70,83,0.25)" stroke-dasharray="4 5" />
+          <line x1="46" y1="176" x2="319" y2="192" stroke="rgba(38,70,83,0.25)" stroke-dasharray="4 5" />
+          <line x1="135" y1="42" x2="120" y2="250" stroke="rgba(38,70,83,0.25)" stroke-dasharray="4 5" />
+          <line x1="240" y1="46" x2="215" y2="255" stroke="rgba(38,70,83,0.25)" stroke-dasharray="4 5" />
+          <!-- 轴标签 -->
+          <text x="18" y="46" font-size="12" fill="#264653" opacity="0.7">闭</text>
+          <text x="18" y="112" font-size="12" fill="#264653" opacity="0.7">半闭</text>
+          <text x="18" y="182" font-size="12" fill="#264653" opacity="0.7">半开</text>
+          <text x="18" y="252" font-size="12" fill="#264653" opacity="0.7">开</text>
+          <text x="52" y="286" font-size="12" fill="#264653" opacity="0.7">前</text>
+          <text x="196" y="290" font-size="12" fill="#264653" opacity="0.7">央</text>
+          <text x="330" y="286" font-size="12" fill="#264653" opacity="0.7">后</text>
+          <g id="vowelDots"></g>
+        </svg>
+        <p class="chart-note">圆唇音集中在右下区域（/uː/ /ʊ/ /ɔː/ /ɒ/）。位置越近的音，越容易混淆，也越值得对比着练。</p>
+      </div>
+      <div class="chart-detail reveal" id="chartDetail"><!-- JS 填充 --></div>
+    </div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" style="background: var(--cream);">
+    <path d="M0,24 C260,52 520,4 760,26 C1000,48 1220,10 1440,30 L1440,56 L0,56 Z" fill="#e9c46a"></path>
+  </svg>
+
+  <!-- 02 单元音 -->
+  <section class="section gold-bg" id="mono">
+    <div class="sec-head reveal">
+      <span class="sec-no">02</span>
+      <h2>单元音 · 12 个</h2>
+      <div class="en">Monophthongs</div>
+      <p class="desc">发音时口型保持不变。长元音（带 ː）要拖长，短元音要干脆。点大音标听示范单词的慢读，点单词听标准读音。</p>
+    </div>
+    <div class="wrap grid" id="monoGrid"></div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" style="background: var(--gold);">
+    <path d="M0,30 C220,6 480,52 720,28 C960,6 1200,46 1440,22 L1440,56 L0,56 Z" fill="#a8dadc"></path>
+  </svg>
+
+  <!-- 03 双元音 -->
+  <section class="section mint-bg" id="di">
+    <div class="sec-head reveal">
+      <span class="sec-no">03</span>
+      <h2>双元音 · 8 个</h2>
+      <div class="en">Diphthongs</div>
+      <p class="desc">两个元音“滑”在一起：前一个清楚响亮，后一个轻而短。记住口诀——<b>前长后短、前重后轻、一气呵成</b>。</p>
+    </div>
+    <div class="wrap grid" id="diGrid"></div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" style="background: var(--mint);">
+    <path d="M0,26 C240,50 500,8 740,30 C980,52 1220,12 1440,34 L1440,56 L0,56 Z" fill="#f5f0e1"></path>
+  </svg>
+
+  <!-- 04 辅音 -->
+  <section class="section cream-bg" id="cons">
+    <div class="sec-head reveal">
+      <span class="sec-no">04</span>
+      <h2>辅音 · 28 个</h2>
+      <div class="en">Consonants</div>
+      <p class="desc">
+        辅音的关键是<b>清浊成对</b>：口型完全一样，只差声带振不振动。
+        <span style="color: var(--coral); font-weight: 700;">橙色的清辅音</span>只有气流，
+        <span style="color: var(--teal); font-weight: 700;">深青的浊辅音</span>摸摸喉咙会“嗡嗡”振动。
+      </p>
+    </div>
+    <div class="wrap" id="consWrap"></div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" style="background: var(--cream);">
+    <path d="M0,28 C260,4 520,54 760,26 C1000,6 1240,48 1440,24 L1440,56 L0,56 Z" fill="#264653"></path>
+  </svg>
+
+  <!-- 05 最小对立对 -->
+  <section class="section teal-bg" id="pairs">
+    <div class="sec-head reveal">
+      <span class="sec-no">05</span>
+      <h2>辨音练习 · 最小对立对</h2>
+      <div class="en">Minimal Pairs</div>
+      <p class="desc" style="color: rgba(245,240,225,0.85);">
+        只差一个音，意思完全不同——这正是练耳朵最好的材料。来回点两边，听出区别才算过关。
+      </p>
+    </div>
+    <div class="wrap pairs-grid" id="pairsGrid"></div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" style="background: var(--teal);">
+    <path d="M0,24 C240,48 500,6 740,28 C980,50 1220,10 1440,32 L1440,56 L0,56 Z" fill="#e9c46a"></path>
+  </svg>
+
+  <!-- 06 小测验 -->
+  <section class="section gold-bg" id="quiz">
+    <div class="sec-head reveal">
+      <span class="sec-no">06</span>
+      <h2>听音辨词小测验</h2>
+      <div class="en">Listening Quiz</div>
+      <p class="desc">点击播放按钮听一个单词，选出它包含的音标。不限次数，练到全对为止。</p>
+    </div>
+    <div class="wrap">
+      <div class="quiz-box reveal" id="quizBox">
+        <div style="font-size: 0.8rem; letter-spacing: 0.2em; opacity: 0.65;">听单词 · 选音标</div>
+        <button class="btn-pill quiz-play" id="quizPlay">▶ 播放单词</button>
+        <div class="q-ipa-hint" id="quizHint">（可以再点一次，慢慢听）</div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <div class="quiz-meta">
+          <span id="quizScore">得分 0 / 0</span>
+          <span id="quizCount">第 1 题</span>
+        </div>
+        <button class="btn-pill ghost quiz-next" id="quizNext">下一题 →</button>
+      </div>
+    </div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" style="background: var(--gold);">
+    <path d="M0,30 C240,8 500,52 740,30 C980,8 1220,46 1440,26 L1440,56 L0,56 Z" fill="#f5f0e1"></path>
+  </svg>
+
+  <!-- 07 学习方法 -->
+  <section class="section cream-bg" id="howto">
+    <div class="sec-head reveal">
+      <span class="sec-no">07</span>
+      <h2>怎么用好这一页</h2>
+      <div class="en">How to Practice</div>
+      <p class="desc">音标不是看会的，是听会和练会的。推荐一个四步循环：</p>
+    </div>
+    <div class="wrap howto">
+      <div class="howto-card reveal">
+        <span class="step">1</span>
+        <h3>先看舌位</h3>
+        <p>在舌位图上找到这个音的位置，对着镜子摆好口型——位置对了，声音就对了大半。</p>
+      </div>
+      <div class="howto-card reveal">
+        <span class="step">2</span>
+        <h3>再听示范</h3>
+        <p>点单词听发音，先别急着跟读。听三遍：第一遍听整体，第二遍听目标音，第三遍听它和其他音的差别。</p>
+      </div>
+      <div class="howto-card reveal">
+        <span class="step">3</span>
+        <h3>对比着练</h3>
+        <p>把容易混的音放在一起练：长短元音（ship / sheep）、清浊辅音（s / z）、最小对立对，差别越听越清楚。</p>
+      </div>
+      <div class="howto-card reveal">
+        <span class="step">4</span>
+        <h3>录音自查</h3>
+        <p>用手机录下自己读的示范单词，和页面里的读音对比。耳朵是最诚实的老师，听出问题就回到第一步。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div>英语音标教室 · 采用 DJ 音标（英式第 15 版常用体系）· 发音由浏览器语音合成提供，示范为英式 / 美式通用读音</div>
+      <div class="ipa">/iː/ /ɪ/ /e/ /æ/ … 开口练起来吧！</div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
