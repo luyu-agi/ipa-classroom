@@ -318,7 +318,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
     if (!card) return;
     const r = card.getBoundingClientRect();
     const rx = ((e.clientY - r.top) / r.height - 0.5) * -1;
-    const ry = (e.clientX - r.left) / r.width - 0.5;
+    const ry = ((e.clientX - r.left) / r.width - 0.5);
     card.style.transform = `perspective(1000px) rotateX(${(rx * 100) / 40}deg) rotateY(${(ry * 100) / 40}deg)`;
   });
   document.addEventListener("mouseleave", () => {
@@ -362,4 +362,94 @@ const io = new IntersectionObserver(
 document.querySelectorAll(".reveal, .card").forEach((el) => {
   el.classList.add("reveal");
   io.observe(el);
+});
+
+/* ---------- 安装到主屏幕 · 引导 ---------- */
+const installBtn = document.getElementById("installBtn");
+const installModal = document.getElementById("installModal");
+const installSteps = document.getElementById("installSteps");
+const installClose = document.getElementById("installClose");
+let deferredInstallPrompt = null;
+
+const isStandalone =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  window.navigator.standalone === true;
+const ua = navigator.userAgent.toLowerCase();
+const isIOS = /iphone|ipad|ipod/.test(ua);
+// iPadOS 13+ 默认把 UA 伪装成 Mac，用触屏点数补充判断
+const isIPadOS = !isIOS && navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+
+const SHARE_SVG =
+  '<svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"/><path d="M7.5 7L12 2.8 16.5 7"/><path d="M5.5 11v8.2A1.8 1.8 0 0 0 7.3 21h9.4a1.8 1.8 0 0 0 1.8-1.8V11"/></svg>';
+const PLUS_SVG =
+  '<svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><path d="M12 8.2v7.6M8.2 12h7.6"/></svg>';
+
+function iosStepsHTML() {
+  return (
+    step(1, `在 <b>Safari</b> 中打开本页，点底部（或顶部地址栏旁）的「分享」按钮 ${SHARE_SVG}`) +
+    step(2, `在弹出的菜单里<b>向下滑</b>，找到「添加到主屏幕」 ${PLUS_SVG} ，点它`) +
+    step(3, `点右上角的「添加」——桌面上就出现「音标教室」图标啦 🎉`) +
+    `<div class="install-tip">小提示：必须用 <b>Safari</b> 打开才有「添加到主屏幕」；如果是在微信或其他浏览器里看到的本页，请复制网址到 Safari 再打开。</div>`
+  );
+}
+
+function genericStepsHTML() {
+  return (
+    step(1, `点浏览器右上角的菜单（Chrome / Edge 一般是 <b>⋮</b> 或 <b>…</b>）`) +
+    step(2, `选择「安装应用」或「添加到主屏幕」 ${PLUS_SVG}`) +
+    step(3, `确认「安装」，图标就会出现在桌面 / 应用列表里`) +
+    `<div class="install-tip">如果菜单里没有「安装应用」，可以换个浏览器试试：iPhone / iPad 请用 <b>Safari</b>，安卓推荐 <b>Chrome</b>，电脑推荐 <b>Edge</b> 或 <b>Chrome</b>。</div>`
+  );
+}
+
+function step(no, html) {
+  return `<div class="install-step"><span class="no">${no}</span><p>${html}</p></div>`;
+}
+
+function openInstallModal() {
+  installSteps.innerHTML = isIOS || isIPadOS ? iosStepsHTML() : genericStepsHTML();
+  installModal.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeInstallModal() {
+  installModal.hidden = true;
+  document.body.style.overflow = "";
+}
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+});
+
+window.addEventListener("appinstalled", () => {
+  installBtn.style.display = "none";
+  closeInstallModal();
+});
+
+if (isStandalone) {
+  // 已经是安装态：不再需要引导按钮
+  installBtn.style.display = "none";
+} else {
+  installBtn.addEventListener("click", async () => {
+    if (deferredInstallPrompt) {
+      // 浏览器支持一键安装（Edge / Chrome / 安卓）：直接弹系统安装框
+      deferredInstallPrompt.prompt();
+      try {
+        const choice = await deferredInstallPrompt.userChoice;
+        if (choice && choice.outcome === "accepted") installBtn.style.display = "none";
+      } catch (_) { /* 用户关闭提示，忽略 */ }
+      deferredInstallPrompt = null;
+    } else {
+      openInstallModal();
+    }
+  });
+}
+
+installClose.addEventListener("click", closeInstallModal);
+installModal.addEventListener("click", (e) => {
+  if (e.target === installModal) closeInstallModal();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !installModal.hidden) closeInstallModal();
 });
