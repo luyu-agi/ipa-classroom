@@ -1,0 +1,9 @@
+{
+  "name": "ipa-classroom",
+  "version": "1.0.0",
+  "private": true,
+  "description": "英语音标教室 — 48 个国际音标的互动教学页",
+  "scripts": {
+    "dev": "node server.js"
+  }
+}
