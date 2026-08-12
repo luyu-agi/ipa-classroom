@@ -37,6 +37,7 @@
       <a href="#quiz">小测验</a>
       <a href="#howto">学习方法</a>
       <button class="font-toggle" id="fontToggle" aria-label="切换大字号模式" title="投屏教学：一键放大字号">A+</button>
+      <button class="install-btn" id="installBtn" title="安装到主屏幕：全屏 + 离线可用">⤓ 安装 App</button>
     </div>
   </nav>
 
@@ -241,6 +242,16 @@
       <div class="ipa">/iː/ /ɪ/ /e/ /æ/ … 开口练起来吧！</div>
     </div>
   </footer>
+
+  <!-- 安装到主屏幕 · 引导弹窗 -->
+  <div class="install-modal" id="installModal" hidden>
+    <div class="install-card" role="dialog" aria-modal="true" aria-labelledby="installTitle">
+      <button class="install-close" id="installClose" aria-label="关闭">×</button>
+      <h3 id="installTitle">装到主屏幕，像 App 一样用</h3>
+      <p class="install-sub">添加后它会出现在桌面上：点开全屏学习、没有地址栏，<b>离线也能用</b>——课堂上再也不怕网络卡。</p>
+      <div id="installSteps"></div>
+    </div>
+  </div>
 
   <script src="data.js"></script>
   <script src="app.js"></script>
