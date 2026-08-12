@@ -1,0 +1,9 @@
+.git/
+.github/
+tools/
+node_modules/
+README.md
+package.json
+server.js
+wrangler.jsonc
+.assetsignore
