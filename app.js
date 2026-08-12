@@ -318,7 +318,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
     if (!card) return;
     const r = card.getBoundingClientRect();
     const rx = ((e.clientY - r.top) / r.height - 0.5) * -1;
-    const ry = ((e.clientX - r.left) / r.width - 0.5);
+    const ry = (e.clientX - r.left) / r.width - 0.5;
     card.style.transform = `perspective(1000px) rotateX(${(rx * 100) / 40}deg) rotateY(${(ry * 100) / 40}deg)`;
   });
   document.addEventListener("mouseleave", () => {
