@@ -7,3 +7,4 @@ package.json
 server.js
 wrangler.jsonc
 .assetsignore
+.deploy-trigger
