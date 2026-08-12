@@ -1,0 +1,576 @@
+/* ============ 英语音标教室 · 样式 ============ */
+/* 温暖纸感教室：奶油底 + 深青墨 + 珊瑚橙 / 金黄 / 薄荷 分区 */
+
+:root {
+  --cream: #f5f0e1;
+  --beige: #e8dcc4;
+  --coral: #f4a261;
+  --gold: #e9c46a;
+  --mint: #a8dadc;
+  --teal: #264653;
+  --ink: #161616;
+  --paper: #fdfaf2;
+  --line: rgba(38, 70, 83, 0.16);
+
+  --font-display: "Literata", "Songti SC", "SimSun", serif;
+  --font-ipa: "Gentium Book Plus", "Charis SIL", "Doulos SIL", Georgia, serif;
+  --font-body: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--teal);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--gold); color: var(--ink); }
+
+/* ---------- 顶部导航 ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 5vw;
+  background: rgba(245, 240, 225, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav .logo .ipa { font-family: var(--font-ipa); color: var(--coral); }
+.nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+.nav-links a {
+  font-size: 0.85rem;
+  color: var(--teal);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-links a:hover { background: var(--teal); color: var(--cream); }
+
+/* ---------- 页头 Hero ---------- */
+.hero {
+  position: relative;
+  padding: 88px 5vw 120px;
+  background: var(--beige);
+  overflow: hidden;
+}
+.hero-glyph {
+  position: absolute;
+  font-family: var(--font-ipa);
+  color: rgba(38, 70, 83, 0.07);
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+}
+.hero h1 {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.15;
+  max-width: 14em;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--coral);
+}
+.hero .sub {
+  position: relative;
+  margin-top: 22px;
+  max-width: 34em;
+  font-size: 1.05rem;
+  color: rgba(38, 70, 83, 0.85);
+}
+.hero .sub .ipa { font-family: var(--font-ipa); }
+.hero-stats {
+  position: relative;
+  margin-top: 40px;
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.hero-stat {
+  padding: 0 32px;
+  border-left: 2px solid var(--teal);
+}
+.hero-stat:first-child { padding-left: 0; border-left: none; }
+.hero-stat .num {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.hero-stat .lbl { font-size: 0.82rem; letter-spacing: 0.08em; }
+.hero .cta-row { position: relative; margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* 深色胶囊按钮（取自参考的 primary button） */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 13px 26px;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s, background 0.2s;
+}
+.btn-pill:hover { background: var(--teal); transform: translateY(-1px); }
+.btn-pill.ghost {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+}
+.btn-pill.ghost:hover { background: var(--ink); color: #fff; }
+
+/* ---------- 波浪分节（torn-paper 过渡） ---------- */
+.wave { display: block; width: 100%; height: 56px; margin-bottom: -1px; }
+
+/* ---------- 区块通用 ---------- */
+.section { position: relative; padding: 84px 5vw 96px; }
+.section.gold-bg { background: var(--gold); }
+.section.mint-bg { background: var(--mint); }
+.section.cream-bg { background: var(--cream); }
+.section.teal-bg { background: var(--teal); color: var(--cream); }
+
+.sec-head { position: relative; max-width: 1200px; margin: 0 auto 48px; }
+.sec-no {
+  position: absolute;
+  top: -0.35em;
+  left: -0.2em;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(38, 70, 83, 0.35);
+  pointer-events: none;
+  user-select: none;
+}
+.teal-bg .sec-no { -webkit-text-stroke: 1.5px rgba(245, 240, 225, 0.35); }
+.sec-head h2 {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--ink);
+  padding-left: clamp(2.6rem, 5vw, 4.2rem);
+}
+.teal-bg .sec-head h2 { color: var(--cream); }
+.sec-head .en {
+  position: relative;
+  padding-left: clamp(2.6rem, 5vw, 4.2rem);
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+.sec-head .desc {
+  position: relative;
+  padding-left: clamp(2.6rem, 5vw, 4.2rem);
+  margin-top: 10px;
+  max-width: 44em;
+  opacity: 0.85;
+}
+
+.wrap { max-width: 1200px; margin: 0 auto; }
+
+/* ---------- 音标卡片 ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 26px;
+}
+.card {
+  position: relative;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 18px;
+  padding: 26px 24px 24px;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.25s;
+  will-change: transform;
+}
+.card:hover { box-shadow: 7px 7px 0 rgba(22, 22, 22, 0.9); }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.phoneme {
+  font-family: var(--font-ipa);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--ink);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px 10px 8px;
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+.phoneme:hover { background: var(--gold); }
+.phoneme::before { content: "/"; opacity: 0.4; font-size: 0.6em; }
+.phoneme::after { content: "/"; opacity: 0.4; font-size: 0.6em; }
+
+.tags { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--mint);
+  color: var(--ink);
+  white-space: nowrap;
+}
+.tag + .tag { background: var(--beige); }
+
+.words { margin-top: 16px; border-top: 1.5px dashed var(--line); padding-top: 14px; }
+.word-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.word-row:hover { background: rgba(233, 196, 106, 0.35); }
+.word-row.playing { background: var(--gold); }
+.word-row .w {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: var(--ink);
+  min-width: 4.2em;
+}
+.word-row .wi { font-family: var(--font-ipa); font-size: 1rem; flex: 1; }
+.word-row .zh { font-size: 0.82rem; opacity: 0.65; }
+.word-row .spk { font-size: 0.85rem; opacity: 0; transition: opacity 0.18s; }
+.word-row:hover .spk { opacity: 0.9; }
+
+.tip { margin-top: 14px; font-size: 0.92rem; line-height: 1.75; }
+.tip .label {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background: var(--teal);
+  border-radius: 6px;
+  padding: 1px 10px;
+  margin-right: 8px;
+}
+
+/* 斜贴记忆徽章（callout badge 手法） */
+.memo-badge {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--ink);
+  box-shadow: 3px 3px 0 rgba(22, 22, 22, 0.9);
+  transform: rotate(3deg);
+  max-width: 76%;
+  line-height: 1.45;
+}
+.memo-badge::before { content: "💡 "; }
+.card:nth-child(even) .memo-badge { transform: rotate(-2.5deg); }
+
+/* 播放中：声波脉冲（有目的的动效） */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(244, 162, 97, 0.55); }
+  100% { box-shadow: 0 0 0 16px rgba(244, 162, 97, 0); }
+}
+.card.speaking .phoneme { animation: pulse-ring 0.9s ease-out infinite; background: var(--coral); color: #fff; }
+
+/* ---------- 元音舌位图 ---------- */
+.chart-flex {
+  display: grid;
+  grid-template-columns: minmax(300px, 460px) 1fr;
+  gap: 44px;
+  align-items: start;
+}
+@media (max-width: 880px) { .chart-flex { grid-template-columns: 1fr; } }
+.vowel-chart { width: 100%; height: auto; display: block; }
+.vowel-dot { cursor: pointer; }
+.vowel-dot circle.core { fill: var(--teal); stroke: var(--cream); stroke-width: 2.5; transition: fill 0.2s, r 0.2s; }
+.vowel-dot:hover circle.core, .vowel-dot.active circle.core { fill: var(--coral); }
+.vowel-dot text {
+  font-family: var(--font-ipa);
+  font-size: 21px;
+  fill: var(--ink);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+.vowel-dot .halo { fill: rgba(38, 70, 83, 0.12); }
+.chart-note { font-size: 0.85rem; opacity: 0.75; margin-top: 10px; }
+
+.chart-detail {
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 18px;
+  padding: 28px;
+  min-height: 300px;
+}
+.chart-detail .big { font-family: var(--font-ipa); font-size: 3.4rem; color: var(--ink); line-height: 1.1; }
+.chart-detail .meta { margin: 6px 0 14px; display: flex; gap: 8px; }
+.chart-detail .words { margin-top: 10px; }
+.chart-detail .tip { margin-top: 12px; }
+.chart-detail .memo-inline {
+  margin-top: 14px;
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.86rem;
+  transform: rotate(-1deg);
+  box-shadow: 3px 3px 0 rgba(22, 22, 22, 0.9);
+}
+
+/* ---------- 辅音分组 ---------- */
+.cons-group { margin-bottom: 56px; }
+.cons-group-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
+.cons-group-head h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.cons-group-head .en { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; }
+.cons-group-head .desc { width: 100%; font-size: 0.9rem; opacity: 0.8; }
+
+.pair-block { margin-top: 22px; }
+.pair-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-ipa);
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  background: rgba(253, 250, 242, 0.7);
+  border: 1.5px dashed rgba(38, 70, 83, 0.4);
+  padding: 5px 16px;
+  border-radius: 999px;
+}
+.pair-label .vs { font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.1em; opacity: 0.6; }
+.pair-label .qing { color: var(--coral); font-weight: 700; }
+.pair-label .zhuo { color: var(--teal); font-weight: 700; }
+.pair-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 26px; }
+.card.compact { padding: 22px 22px 20px; }
+.card.compact .phoneme { font-size: 2.4rem; }
+
+.voice-chip {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+.voice-chip.qing { background: var(--coral); color: #fff; }
+.voice-chip.zhuo { background: var(--teal); color: #fff; }
+
+/* ---------- 最小对立对 ---------- */
+.pairs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+.mp-card {
+  background: rgba(253, 250, 242, 0.14);
+  border: 1.5px solid rgba(245, 240, 225, 0.55);
+  border-radius: 18px;
+  padding: 22px;
+}
+.mp-focus {
+  display: inline-block;
+  font-family: var(--font-ipa);
+  font-size: 0.85rem;
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 3px 14px;
+  margin-bottom: 14px;
+}
+.mp-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.mp-row:hover { background: rgba(245, 240, 225, 0.16); }
+.mp-row.playing { background: rgba(233, 196, 106, 0.45); }
+.mp-row .w { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; min-width: 3.6em; color: var(--cream); }
+.mp-row .wi { font-family: var(--font-ipa); flex: 1; }
+.mp-row .zh { font-size: 0.82rem; opacity: 0.7; }
+
+/* ---------- 听音辨词测验 ---------- */
+.quiz-box {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 22px;
+  padding: 40px 36px;
+  text-align: center;
+  box-shadow: 8px 8px 0 rgba(22, 22, 22, 0.9);
+}
+.quiz-box .q-ipa-hint { font-size: 0.9rem; opacity: 0.7; margin-top: 6px; }
+.quiz-play { margin: 22px auto 8px; }
+.quiz-options { display: flex; justify-content: center; gap: 16px; margin-top: 24px; flex-wrap: wrap; }
+.quiz-opt {
+  font-family: var(--font-ipa);
+  font-size: 1.6rem;
+  min-width: 108px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1.5px solid var(--ink);
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.2s;
+  color: var(--ink);
+}
+.quiz-opt:hover { transform: translateY(-2px); background: var(--gold); }
+.quiz-opt.correct { background: var(--mint); border-color: var(--teal); }
+.quiz-opt.wrong { background: var(--coral); color: #fff; }
+.quiz-feedback { margin-top: 20px; font-size: 1rem; min-height: 1.8em; font-weight: 700; }
+.quiz-feedback .ans { font-family: var(--font-ipa); }
+.quiz-meta { margin-top: 18px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; opacity: 0.8; }
+.quiz-next { margin-top: 14px; }
+
+/* ---------- 学习方法 ---------- */
+.howto { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 26px; }
+.howto-card {
+  position: relative;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 18px;
+  padding: 30px 26px 26px;
+}
+.howto-card .step {
+  position: absolute;
+  top: -26px;
+  left: 18px;
+  font-family: var(--font-display);
+  font-size: 3.6rem;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink);
+  line-height: 1;
+}
+.howto-card h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--ink); margin: 14px 0 8px; }
+.howto-card p { font-size: 0.92rem; }
+
+/* ---------- 页脚 ---------- */
+.footer {
+  background: var(--ink);
+  color: rgba(245, 240, 225, 0.85);
+  padding: 46px 5vw;
+  font-size: 0.85rem;
+}
+.footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.footer .ipa { font-family: var(--font-ipa); }
+
+/* ---------- 滚动进入（Inter Obs，有节制的使用） ---------- */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .card.speaking .phoneme { animation: none; background: var(--coral); }
+}
+
+@media (max-width: 640px) {
+  .hero { padding: 64px 6vw 96px; }
+  .memo-badge { position: static; transform: rotate(-1deg); display: inline-block; margin-bottom: 14px; max-width: 100%; }
+  .nav-links a { padding: 5px 10px; font-size: 0.8rem; }
+}
+
+/* ============ PWA / iPad 触屏优化 ============ */
+
+/* 刘海屏安全区 */
+.nav { padding-top: calc(14px + env(safe-area-inset-top)); padding-left: calc(5vw + env(safe-area-inset-left)); padding-right: calc(5vw + env(safe-area-inset-right)); }
+.footer { padding-bottom: calc(46px + env(safe-area-inset-bottom)); }
+
+/* 防双击缩放误触，滚动保持顺滑 */
+body { touch-action: pan-x pan-y; }
+button, .word-row, .mp-row, .vowel-dot, a { touch-action: manipulation; }
+
+/* 大字号开关 */
+.font-toggle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: var(--gold);
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 4px 14px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.font-toggle:hover, .font-toggle.on { background: var(--ink); color: var(--gold); }
+
+/* 触屏设备：播放提示常显（hover 不可用） */
+@media (pointer: coarse) {
+  .word-row .spk { opacity: 0.55; }
+  .word-row { min-height: 46px; align-items: center; }
+  .mp-row { min-height: 50px; align-items: center; }
+  .phoneme { min-height: 56px; }
+  .quiz-opt { min-height: 56px; }
+  .btn-pill { padding: 15px 28px; }
+}
+
+/* iPad 竖屏 / 横屏断点 */
+@media (min-width: 700px) and (max-width: 1180px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .pair-grid { grid-template-columns: repeat(2, 1fr); }
+  .pairs-grid { grid-template-columns: repeat(2, 1fr); }
+  .howto { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats { gap: 8px; }
+}
+@media (min-width: 700px) and (max-width: 1180px) and (orientation: portrait) {
+  .chart-flex { grid-template-columns: 1fr; }
+  .vowel-chart { max-width: 480px; margin: 0 auto; }
+}
+
+/* 大字号模式（投屏教学） */
+html.big-text { font-size: 19px; }
+html.big-text .phoneme { font-size: 3.8rem; }
+html.big-text .card.compact .phoneme { font-size: 3rem; }
+html.big-text .word-row .w { font-size: 1.3rem; }
+html.big-text .word-row .wi { font-size: 1.2rem; }
+html.big-text .tip { font-size: 1.05rem; }
+html.big-text .vowel-dot text { font-size: 24px; }
+html.big-text .mp-row .w { font-size: 1.35rem; }
+html.big-text .quiz-opt { font-size: 1.9rem; }
