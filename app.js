@@ -48,6 +48,19 @@ function speak(text, rate, rowEl, cardEl) {
   speechSynthesis.speak(u);
 }
 
+/* ---------- 键盘可达性辅助（Enter / 空格 触发点击） ---------- */
+function makeKeyboardable(el, label) {
+  el.tabIndex = 0;
+  el.setAttribute("role", "button");
+  if (label) el.setAttribute("aria-label", label);
+  el.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      el.click();
+    }
+  });
+}
+
 /* ---------- 卡片模板 ---------- */
 function wordRow(w) {
   const row = document.createElement("div");
@@ -61,6 +74,7 @@ function wordRow(w) {
     e.stopPropagation();
     speak(w.w, 0.85, row, null);
   });
+  makeKeyboardable(row, "播放单词 " + w.w);
   return row;
 }
 
@@ -181,6 +195,7 @@ MINIMAL_PAIRS.forEach((mp) => {
     row.innerHTML =
       `<span class="w">${side.w}</span><span class="wi">${side.ipa}</span><span class="zh">${side.zh}</span><span>▶</span>`;
     row.addEventListener("click", () => speak(side.w, 0.8, row, null));
+    makeKeyboardable(row, "播放单词 " + side.w);
     card.appendChild(row);
   });
 
@@ -223,8 +238,13 @@ function showDetail(p, dotEl) {
 
   const memo = document.createElement("div");
   memo.className = "memo-inline";
-  memo.textContent = "💡 " + p.memo;
+  memo.textContent = p.memo;
   detail.appendChild(memo);
+}
+
+function activateDot(p, g) {
+  showDetail(p, g);
+  speak(p.words[0].w, 0.6, null, null);
 }
 
 MONOPHTHONGS.forEach((p) => {
@@ -247,9 +267,15 @@ MONOPHTHONGS.forEach((p) => {
   g.appendChild(halo);
   g.appendChild(core);
   g.appendChild(label);
-  g.addEventListener("click", () => {
-    showDetail(p, g);
-    speak(p.words[0].w, 0.6, null, null);
+  g.addEventListener("click", () => activateDot(p, g));
+  g.setAttribute("tabindex", "0");
+  g.setAttribute("role", "button");
+  g.setAttribute("aria-label", "聆听 /" + p.sym + "/ 的示范单词");
+  g.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      activateDot(p, g);
+    }
   });
   dotsG.appendChild(g);
 });
@@ -285,7 +311,7 @@ function renderQuiz() {
       if (opt === q.answer) {
         quizRight++;
         b.classList.add("correct");
-        qFeedback.innerHTML = `答对了！<b>${q.word}</b>（${q.zh}）里就是 <span class="ans">/${q.answer}/</span> 这个音。`;
+        qFeedback.innerHTML = `答对了。<b>${q.word}</b>（${q.zh}）里就是 <span class="ans">/${q.answer}/</span> 这个音。`;
       } else {
         b.classList.add("wrong");
         [...qOptions.children].forEach((c) => {
@@ -388,7 +414,7 @@ function iosStepsHTML() {
   return (
     step(1, `在 <b>Safari</b> 中打开本页，点底部（或顶部地址栏旁）的「分享」按钮 ${SHARE_SVG}`) +
     step(2, `在弹出的菜单里<b>向下滑</b>，找到「添加到主屏幕」 ${PLUS_SVG} ，点它`) +
-    step(3, `点右上角的「添加」——桌面上就出现「音标教室」图标啦 🎉`) +
+    step(3, `点右上角的「添加」——桌面上就出现「音标教室」图标了。`) +
     `<div class="install-tip">小提示：必须用 <b>Safari</b> 打开才有「添加到主屏幕」；如果是在微信或其他浏览器里看到的本页，请复制网址到 Safari 再打开。</div>`
   );
 }
