@@ -1,5 +1,5 @@
 /* 英语音标教室 · Service Worker（离线缓存） */
-const CACHE = "ipa-classroom-v2";
+const CACHE = "ipa-classroom-v3";
 const ASSETS = [
   "./",
   "index.html",
