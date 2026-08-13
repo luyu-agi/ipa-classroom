@@ -298,7 +298,6 @@ body {
   max-width: 76%;
   line-height: 1.45;
 }
-.memo-badge::before { content: "💡 "; }
 .card:nth-child(even) .memo-badge { transform: rotate(-2.5deg); }
 
 /* 播放中：声波脉冲（有目的的动效） */
@@ -540,6 +539,18 @@ button, .word-row, .mp-row, .vowel-dot, a { touch-action: manipulation; }
   transition: background 0.2s, color 0.2s;
 }
 .font-toggle:hover, .font-toggle.on { background: var(--ink); color: var(--gold); }
+
+/* 按下反馈（触屏确认感） */
+.btn-pill:active { transform: translateY(1px); }
+.quiz-opt:active { transform: scale(0.97); }
+.install-btn:active, .font-toggle:active { transform: translateY(1px); }
+
+/* 键盘焦点可见性 */
+:focus-visible { outline: 2.5px solid var(--coral); outline-offset: 2px; }
+.word-row:focus-visible { background: rgba(233, 196, 106, 0.35); }
+.mp-row:focus-visible { background: rgba(245, 240, 225, 0.16); }
+.vowel-dot:focus-visible { outline: none; }
+.vowel-dot:focus-visible .halo { fill: rgba(244, 162, 97, 0.4); }
 
 /* 触屏设备：播放提示常显（hover 不可用） */
 @media (pointer: coarse) {
